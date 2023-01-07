@@ -97,7 +97,7 @@ const Navbar = (props) => {
             container={container}
             variant="temporary"
             open={mobileOpen}
-            className="bg-gray-400/50 drop-shadow-md dark:bg-gray-800/50 "
+            className="bg-gray-400/50 drop-shadow-md dark:bg-gray-800/50 drawerClass"
             onClose={handleDrawerToggle}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.

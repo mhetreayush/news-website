@@ -7,7 +7,7 @@ html {
     
   }
 
-  div{
+  div :not(.drawerClass){
     transition: all;
     transition-duration: 100ms;
   }
