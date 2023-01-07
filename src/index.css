@@ -4,4 +4,10 @@
 
 html {
     scroll-behavior: smooth;
+    
+  }
+
+  div{
+    transition: all;
+    transition-duration: 100ms;
   }

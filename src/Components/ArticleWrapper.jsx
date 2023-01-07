@@ -15,7 +15,7 @@ const ArticleWrapper = ({
     return (
       <Link
         onClick={() => setCurrentPage(title)}
-        className="md:w-1/2 rounded-md md:min-h-full bg-gray-200 p-4 flex flex-col justify-between font-semibold"
+        className="md:w-1/2 rounded-md md:min-h-full bg-gray-400 p-4 flex flex-col justify-between font-semibold hover:!bg-gray-600 hover:text-white dark:bg-gray-800 dark:text-gray-100"
         to={"/news-website/" + slugify(title)}
       >
         {title}
@@ -25,7 +25,7 @@ const ArticleWrapper = ({
   };
   return (
     <div className="py-10 flex justify-center px-4 md:px-0">
-      <div className="flex flex-col gap-y-10 md:w-3/4">
+      <div className="flex flex-col gap-y-10 md:w-3/4 ">
         <div>
           <h1 className="text-xl font-semibold">{title}</h1>
         </div>
