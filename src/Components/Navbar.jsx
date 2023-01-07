@@ -59,9 +59,9 @@ const Navbar = (props) => {
           >
             <AiOutlineMenu size={40} className="p-2 rounded-md bg-gray-200" />
           </IconButton>
-          {props.currentPage !== "/news-website/" && (
+          {props.currentPage !== "/news-website" && (
             <Link
-              onClick={() => props.setCurrentPage("/news-website/")}
+              onClick={() => props.setCurrentPage("/news-website")}
               to="/news-website"
               className="px-4 py-2 rounded-md bg-gray-200 font-semibold"
             >
