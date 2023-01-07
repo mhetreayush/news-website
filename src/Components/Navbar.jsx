@@ -33,7 +33,7 @@ const Navbar = (props) => {
               className={`odd:bg-gray-100 text-left p-2 ${
                 props.currentPage === item.title && "!bg-gray-600 text-white"
               } `}
-              to={slugify(item.title)}
+              to={"/news-website/" + slugify(item.title)}
             >
               {item.title}
             </Link>
@@ -59,7 +59,7 @@ const Navbar = (props) => {
           >
             <AiOutlineMenu />
           </IconButton>
-          <Link onClick={() => props.setCurrentPage("/")} to="/">
+          <Link onClick={() => props.setCurrentPage("/")} to="/news-website">
             Home
           </Link>
         </Toolbar>

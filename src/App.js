@@ -17,7 +17,7 @@ const App = () => {
       >
         <Routes>
           <Route
-            path="/"
+            path="/news-website/"
             element={<Home newsObj={newsObj} setCurrentPage={setCurrentPage} />}
           />
           {React.Children.toArray(
@@ -32,7 +32,7 @@ const App = () => {
               return (
                 <Route
                   // path={item.title.replace(" ", "-")}
-                  path={slugify(item.title)}
+                  path={"/news-website/" + slugify(item.title)}
                   element={
                     <ArticleWrapper
                       setCurrentPage={setCurrentPage}

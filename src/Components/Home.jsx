@@ -9,7 +9,7 @@ const Home = ({ newsObj, setCurrentPage }) => {
           <Link
             onClick={() => setCurrentPage(item.title)}
             className="col-span-1 p-4 bg-gray-200 rounded-md"
-            to={"/" + slugify(item.title)}
+            to={"/news-website/" + slugify(item.title)}
           >
             <Image className="h-[200px]" title={item.title} />
             <h1 className="font-semibold text-lg">{item.title}</h1>

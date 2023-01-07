@@ -12,7 +12,7 @@ const ArticleWrapper = ({
       <Link
         onClick={() => setCurrentPage(title)}
         className="w-1/2 rounded-md min-h-full bg-gray-200 p-4 flex flex-col justify-between font-semibold"
-        to={"/" + slugify(title)}
+        to={"/news-website/" + slugify(title)}
       >
         {title}
         <h1 className="mt-3">{text}</h1>
