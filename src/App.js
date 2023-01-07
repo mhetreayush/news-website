@@ -17,7 +17,7 @@ const App = () => {
       >
         <Routes>
           <Route
-            path="/news-website/"
+            path="/news-website"
             element={<Home newsObj={newsObj} setCurrentPage={setCurrentPage} />}
           />
           {React.Children.toArray(
