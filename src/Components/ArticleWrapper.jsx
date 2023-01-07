@@ -15,7 +15,7 @@ const ArticleWrapper = ({
     return (
       <Link
         onClick={() => setCurrentPage(title)}
-        className="md:w-1/2 rounded-md md:min-h-full bg-gray-400 p-4 flex flex-col justify-between font-semibold hover:!bg-gray-600 hover:text-white dark:bg-gray-800 dark:text-gray-100"
+        className="md:w-1/2 rounded-md md:min-h-full bg-gray-400 p-4 flex flex-col justify-between font-semibold hover:!bg-gray-600 hover:text-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-400 dark:hover:text-black"
         to={"/news-website/" + slugify(title)}
       >
         {title}
