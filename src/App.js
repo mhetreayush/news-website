@@ -6,7 +6,6 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import { newsObj } from "./data/NewsFiles";
 const App = () => {
-  console.log(slugify(newsObj[2].title));
   const [currentPage, setCurrentPage] = React.useState("/news-website/");
   return (
     <BrowserRouter>
@@ -28,7 +27,6 @@ const App = () => {
               const prevBlog = newsObj[newsObj.indexOf(item) - 1]
                 ? newsObj[newsObj.indexOf(item) - 1]
                 : newsObj[newsObj.length - 1];
-              console.log(slugify(item.title));
               return (
                 <Route
                   // path={item.title.replace(" ", "-")}

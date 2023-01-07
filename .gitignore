@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/internshipAssignment
+/internshipAssignment.zip
 # testing
 /coverage
 
