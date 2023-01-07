@@ -29,7 +29,6 @@ const App = () => {
                 : newsObj[newsObj.length - 1];
               return (
                 <Route
-                  // path={item.title.replace(" ", "-")}
                   path={"/news-website/" + slugify(item.title)}
                   element={
                     <ArticleWrapper
