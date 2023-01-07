@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import slugify from "react-slugify";
 const ArticleWrapper = ({
@@ -7,6 +8,9 @@ const ArticleWrapper = ({
   prevBlog,
   setCurrentPage,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const CustomLink = ({ title, text }) => {
     return (
       <Link
