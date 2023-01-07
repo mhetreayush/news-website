@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import slugify from "react-slugify";
 import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 const drawerWidth = 240;
 
 const Navbar = (props) => {
@@ -59,13 +60,13 @@ const Navbar = (props) => {
           >
             <AiOutlineMenu size={40} className="p-2 rounded-md bg-gray-200" />
           </IconButton>
-          {props.currentPage !== "/news-website" && (
+          {props.currentPage !== "/news-website/" && (
             <Link
-              onClick={() => props.setCurrentPage("/news-website")}
-              to="/news-website"
+              onClick={() => props.setCurrentPage("/news-website/")}
+              to="/news-website/"
               className="px-4 py-2 rounded-md bg-gray-200 font-semibold"
             >
-              Home
+              <AiOutlineHome size={30} className="rounded-md bg-gray-200" />
             </Link>
           )}
         </Toolbar>
