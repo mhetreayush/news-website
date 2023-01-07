@@ -49,7 +49,7 @@ const Navbar = (props) => {
   return (
     <>
       <div className="sticky top-0 bg-white drop-shadow-md">
-        <Toolbar className="flex justify-between">
+        <Toolbar className="flex justify-between items-center py-4">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -57,11 +57,17 @@ const Navbar = (props) => {
             onClick={handleDrawerToggle}
             sx={{ mr: 2 }}
           >
-            <AiOutlineMenu />
+            <AiOutlineMenu size={40} className="p-2 rounded-md bg-gray-200" />
           </IconButton>
-          <Link onClick={() => props.setCurrentPage("/")} to="/news-website">
-            Home
-          </Link>
+          {props.currentPage !== "/" && (
+            <Link
+              onClick={() => props.setCurrentPage("/")}
+              to="/news-website"
+              className="px-4 py-2 rounded-md bg-gray-200 font-semibold"
+            >
+              Home
+            </Link>
+          )}
         </Toolbar>
 
         <Drawer
