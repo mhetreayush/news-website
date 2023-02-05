@@ -1,48 +1,47 @@
-import React, { useDebugValue, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import slugify from "react-slugify";
 import ArticleWrapper from "./Components/ArticleWrapper";
-import Home from "./Components/Home";
+import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
-import { newsObj } from "./data/NewsFiles";
 import { useState } from "react";
+import { fetchNews, toggleDarkMode } from "./HelperFunctions/helperFunctions";
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("/news-website/");
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  const [currentPage, setCurrentPage] = useState("/");
+  const [fetched, setFetched] = useState(false);
+  const [newsTopic, setNewsTopic] = useState(null);
   const [theme, setTheme] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   );
-  const checkTheme = () => {
-    localStorage.theme = theme;
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+  const [newsObj, setNewsObj] = useState([]);
 
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = theme;
-
-    // Whenever the user explicitly chooses dark mode
-    // localStorage.theme = "dark";
-
-    // Whenever the user explicitly chooses to respect the OS preference
-    // localStorage.removeItem("theme");
-    localStorage.theme && setTheme(localStorage.theme);
-  };
   useEffect(() => {
-    checkTheme();
+    toggleDarkMode(theme, setTheme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
-  if (document.location.pathname === "/" || document.location.pathname === "") {
-    document.location.pathname = "/news-website";
-  }
+  const getNews = async (topic) => {
+    const newsObj = await fetchNews(topic);
+    setNewsObj(newsObj.data.articles);
+    setFetched(true);
+  };
+  useEffect(() => {
+    try {
+      if (!fetched) {
+        getNews();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (newsTopic) {
+      getNews(newsTopic);
+    }
+  }, [newsTopic]);
   return (
-    <div class="bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-300">
+    <div className="bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-300 min-h-screen">
       <BrowserRouter>
         <Navbar
           newsObj={newsObj}
@@ -53,9 +52,14 @@ const App = () => {
         >
           <Routes>
             <Route
-              path="/news-website"
+              path="/"
               element={
-                <Home newsObj={newsObj} setCurrentPage={setCurrentPage} />
+                <Home
+                  newsObj={newsObj}
+                  setCurrentPage={setCurrentPage}
+                  setNewsTopic={setNewsTopic}
+                  newsTopic={newsTopic}
+                />
               }
             />
 
@@ -71,12 +75,13 @@ const App = () => {
                   : newsObj[newsObj.length - 1];
                 return (
                   <Route
-                    path={"/news-website/" + slugify(item.title)}
+                    path={"/" + slugify(item.title)}
                     element={
                       <ArticleWrapper
                         setCurrentPage={setCurrentPage}
                         title={item.title}
-                        content={<item.content title={item.title} />}
+                        content={item.content}
+                        image={item.urlToImage}
                         nextBlog={nextBlog.title}
                         prevBlog={prevBlog.title}
                       />

@@ -6,6 +6,7 @@
 .pnp.js
 /internshipAssignment
 /internshipAssignment.zip
+
 # testing
 /coverage
 
@@ -14,11 +15,12 @@
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-
+/src/credentials.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

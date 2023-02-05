@@ -10,8 +10,7 @@ import slugify from "react-slugify";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-const drawerWidth = 240;
-
+import { seventyFivePercent } from "../HelperFunctions/helperFunctions";
 const Navbar = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -19,11 +18,12 @@ const Navbar = (props) => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const drawerWidth = seventyFivePercent();
   const iconClass = `rounded-md bg-gray-500 text-white hover:bg-gray-600  dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-600 `;
   const drawer = (
     <>
       <Box
-        onClick={handleDrawerToggle}
+        onClick={() => handleDrawerToggle}
         sx={{ textAlign: "center" }}
         className="bg-gray-200"
       >
@@ -40,9 +40,9 @@ const Navbar = (props) => {
                 onClick={() => props.setCurrentPage(item.title)}
                 className={`odd:bg-gray-100  dark:text-white  dark:odd:bg-gray-700 text-left p-2 hover:!bg-gray-600 hover:text-white dark:hover:!bg-black dark:hover:!text-white ${
                   props.currentPage === item.title &&
-                  "!bg-gray-600 text-white dark:!bg-black dark:!text-white"
+                  "!bg-gray-600 text-white !dark:bg-black !dark:text-white"
                 } `}
-                to={"/news-website/" + slugify(item.title)}
+                to={"/" + slugify(item.title)}
               >
                 {item.title}
               </Link>
@@ -67,10 +67,10 @@ const Navbar = (props) => {
             className={`p-2 cursor-pointer ${iconClass}`}
           />
           <div className="flex gap-x-3">
-            {props.currentPage !== "/news-website/" && (
+            {props.currentPage !== "/" && (
               <Link
-                onClick={() => props.setCurrentPage("/news-website/")}
-                to="/news-website/"
+                onClick={() => props.setCurrentPage("/")}
+                to="/"
                 className={`px-4 py-2 flex  ${iconClass}`}
               >
                 <AiOutlineHome size={30} />

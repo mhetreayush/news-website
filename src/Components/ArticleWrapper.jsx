@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import slugify from "react-slugify";
+import { TextSection, Image } from "./Microsections";
 const ArticleWrapper = ({
   title,
   content,
   nextBlog,
   prevBlog,
   setCurrentPage,
+  image,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,7 +18,7 @@ const ArticleWrapper = ({
       <Link
         onClick={() => setCurrentPage(title)}
         className="md:w-1/2 rounded-md md:min-h-full bg-gray-400 p-4 flex flex-col justify-between font-semibold hover:!bg-gray-600 hover:text-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-400 dark:hover:text-black"
-        to={"/news-website/" + slugify(title)}
+        to={"/" + slugify(title)}
       >
         {title}
         <h1 className="mt-3">{text}</h1>
@@ -29,7 +31,12 @@ const ArticleWrapper = ({
         <div>
           <h1 className="text-xl font-semibold">{title}</h1>
         </div>
-        <div className="flex flex-col gap-y-2">{content}</div>
+        <div>{image && <Image link={image} title={title} />}</div>
+        <div className="flex flex-col gap-y-2">
+          {content}
+          <TextSection heading="Note: NewsAPI requires premium subscription to fetch the whole content." />
+        </div>
+
         <div className="flex flex-col md:flex-row h-full  gap-x-10 gap-y-5 w-full ">
           <CustomLink title={prevBlog} text="<< Prev" />
           <CustomLink title={nextBlog} text="Next >>" />
