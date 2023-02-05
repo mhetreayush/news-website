@@ -23,10 +23,14 @@ const Home = ({ newsObj, setCurrentPage, setNewsTopic, newsTopic }) => {
   const [searchResult, setSearchResult] = useState(null);
   return (
     <div>
-      <h1 contentEditable className="text-5xl font-semibold my-10 text-center">
-        News
-      </h1>
+      <h1 className="text-5xl font-semibold my-10 text-center">News</h1>
+
       <div className="text-center">
+        <i>
+          As newsApi changed their pricing plan, news dont get fetched on hosted
+          links on free plan, hence I have used dummy data gathered by fetching
+          news on my local server.
+        </i>
         <TextSection heading="Choose a topic" />
         <div className="flex gap-3 flex-wrap justify-center mb-10">
           {Children.toArray(
