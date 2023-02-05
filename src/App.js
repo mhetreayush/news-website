@@ -6,38 +6,42 @@ import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import { useState } from "react";
 import { fetchNews, toggleDarkMode } from "./HelperFunctions/helperFunctions";
+import newsData from "./newsData";
 const App = () => {
   const [currentPage, setCurrentPage] = useState("/");
-  const [fetched, setFetched] = useState(false);
   const [newsTopic, setNewsTopic] = useState(null);
   const [theme, setTheme] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   );
-  const [newsObj, setNewsObj] = useState([]);
+  // const [newsObj, setNewsObj] = useState([]);
 
   useEffect(() => {
     toggleDarkMode(theme, setTheme);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
-
-  const getNews = async (topic) => {
-    const newsObj = await fetchNews(topic);
-    setNewsObj(newsObj.data.articles);
-    setFetched(true);
-  };
-  useEffect(() => {
-    try {
-      if (!fetched) {
-        getNews();
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [newsObj, setNewsObj] = useState(newsData.data.articles);
+  // const getNews = async (topic) => {
+  //   const newsObj = await fetchNews(topic);
+  //   setNewsObj(newsObj.data.articles);
+  //   setFetched(true);
+  // };
+  // useEffect(() => {
+  //   try {
+  //     if (!fetched) {
+  //       getNews();
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   useEffect(() => {
     if (newsTopic) {
-      getNews(newsTopic);
+      setNewsObj(
+        newsData.data.articles.filter((item) =>
+          item.title.toLocaleLowerCase().includes(newsTopic.toLocaleLowerCase())
+        )
+      );
     }
   }, [newsTopic]);
   return (

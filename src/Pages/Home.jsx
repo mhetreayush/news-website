@@ -57,7 +57,7 @@ const Home = ({ newsObj, setCurrentPage, setNewsTopic, newsTopic }) => {
                 setNewsTopic("random");
                 return;
               }
-              setSearchResult(value);
+              setNewsTopic(value);
             }}
           />
           <button

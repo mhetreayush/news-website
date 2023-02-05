@@ -30,6 +30,7 @@ const fetchNews = async (topic) => {
       topic ? topic : "random"
     }&apiKey=${API_KEY}`
   );
+  console.log(newsObj);
   return newsObj;
 };
 // ------------------------------------------------------------------
